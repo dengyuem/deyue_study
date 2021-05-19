@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 用来配置全局属性 -->
+<!--	 第一种方式 -->
+<!--	<properties>-->
+<!--		<property name="mydriver" value="oracle.jdbc.driver.OracleDriver"/>-->
+<!--		<property name="myurl" value="jdbc:oracle:thin:@localhost:1521/orcl"/>-->
+<!--		<property name="myusername" value="myscott"/>-->
+<!--		<property name="mypassword" value="tiger"/>-->
+<!--	</properties>-->
+	<!-- 引入外部的属性文件 -->
+<!--	<properties resource="jdbc.properties"/>-->
+	
+	<!-- 配置数据类型的别名,方便在程序中更加简洁的使用数据类型 -->
+<!--	<typeAliases>-->
+<!--		&lt;!&ndash; type属性指定要给哪个属性类型取别名 &ndash;&gt;-->
+<!--		<typeAlias type="com.jky.entity.User" alias="user"/>-->
+<!--		<typeAlias type="java.util.Map" alias="mymap"/>-->
+<!--	</typeAliases>-->
+
+	<environments default="mysqlEnv">
+		<environment id="oracleEnv">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${mydriver}"/>
+				<property name="url" value="${myurl}"/>
+				<property name="username" value="${myusername}"/>
+				<property name="password" value="${mypassword}"/>
+			</dataSource>
+		</environment>
+		
+		<!-- mysql数据库的环境 -->
+		<environment id="mysqlEnv">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/t15"/>
+				<property name="username" value="root"/>
+				<property name="password" value=""/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="mappers/shusheMapper.xml"/>
+
+	</mappers>
+</configuration>
